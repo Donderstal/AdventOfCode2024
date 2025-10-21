@@ -56,14 +56,24 @@ public class Day1
      */
     public static int FindSimilarityScore(List<int> leftList, List<int> rightList)
     {
+        var similarityMap = new Dictionary<int, int>();
+        
         // First fetch all the unique numbers in the leftList
-        
+        foreach (var leftItem in leftList)
+        {
+            // Add our leftItem int as a key with value 0 if not present
+            similarityMap.TryAdd(leftItem, 0);
+        }
+
         // Then, search through the rightlist
-        
-        // Keep track of how many times each left number appears
-        
-        // Then, multiply each unique leftlist number by their appearances in rightlis
-        
+        foreach (var rightItem in rightList.Where(rightItem => similarityMap.ContainsKey(rightItem)))
+        {
+            // Keep track of how many times each left number appears
+            similarityMap[rightItem]++;
+        }
+
+        // Then, multiply each unique leftlist number by their appearances in rightlist
         // Sum the results and return them
+        return leftList.Sum(item => similarityMap[item] * item);
     }
 }
