@@ -12,14 +12,46 @@ public class Day2
      */
     public static int CountSafeLevels(List<List<int>> report)
     {
+        var safeLevels = 0;
+
+        var previousElement = -1;
+        
         // Loop through the levels in the report
+        foreach (var level in report)
+        {
+            // We can skip the level if the first two are equal
+            if(level[0] == level[1])
+                continue;
+            
+            var levelIsSafe = true;
+            bool shouldIncrease = level[0] < level[1];
+            
+            // Determine if the first and second element have a increasing or decreasing distance
+            
+            foreach (var element in level)
+            {
+                if (previousElement != -1)
+                {
+                    // Then, keep track if all next steps in the level:
+                    // - Are within the 1 3 range
+                    // - Are all increasing/decreasing like the first
+                    if ((shouldIncrease && previousElement >= element)
+                        || (!shouldIncrease && previousElement <= element)
+                        || (Math.Abs(previousElement - element) > 3))
+                    {
+                        levelIsSafe = false;
+                        break;
+                    }
+                }    
+                
+                previousElement = element;
+            }
+            
+            previousElement = -1;
+            // If the level satisfies our condition, add one to our return value
+            if(levelIsSafe) safeLevels++;
+        }
         
-        // Determine if the first and second element have a increasing or decreasing distance
-        
-        // Then, keep track if all next steps in the level:
-        // - Are within the 1 3 range
-        // - Are all increasing/decreasing like the first
-        
-        // If they are, add one to our return value
+        return safeLevels;
     }
 }
