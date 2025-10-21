@@ -8,7 +8,7 @@ public class Day2
         
         return inputSplitByLine.Select(
                     x => x.Split(' ').Select(
-                        y => int.Parse(y)
+                        int.Parse
                     ).ToList()
                 ).ToList();
     }
@@ -21,48 +21,47 @@ public class Day2
      * The levels are either all increasing or all decreasing.
      * Any two adjacent levels differ by at least one and at most three.
      */
-    public static int CountSafeLevels(List<List<int>> report)
+    public static int CountSafeLevels(List<List<int>> input)
     {
-        var safeLevels = 0;
-
-        var previousElement = -1;
+        var safeReports = 0;
+        var previousLevel = -1;
         
         // Loop through the levels in the report
-        foreach (var level in report)
+        foreach (var report in input)
         {
             // We can skip the level if the first two are equal
-            if(level[0] == level[1])
+            if(report[0] == report[1])
                 continue;
             
-            var levelIsSafe = true;
-            bool shouldIncrease = level[0] < level[1];
+            var reportIsSafe = true;
+            var shouldIncrease = report[0] < report[1];
             
             // Determine if the first and second element have a increasing or decreasing distance
             
-            foreach (var element in level)
+            foreach (var level in report)
             {
-                if (previousElement != -1)
+                if (previousLevel != -1)
                 {
                     // Then, keep track if all next steps in the level:
                     // - Are within the 1 3 range
                     // - Are all increasing/decreasing like the first
-                    if ((shouldIncrease && previousElement >= element)
-                        || (!shouldIncrease && previousElement <= element)
-                        || (Math.Abs(previousElement - element) > 3))
+                    if ((shouldIncrease && previousLevel >= level)
+                        || (!shouldIncrease && previousLevel <= level)
+                        || (Math.Abs(previousLevel - level) > 3))
                     {
-                        levelIsSafe = false;
+                        reportIsSafe = false;
                         break;
                     }
                 }    
                 
-                previousElement = element;
+                previousLevel = level;
             }
             
-            previousElement = -1;
+            previousLevel = -1;
             // If the level satisfies our condition, add one to our return value
-            if(levelIsSafe) safeLevels++;
+            if(reportIsSafe) safeReports++;
         }
         
-        return safeLevels;
+        return safeReports;
     }
 }
