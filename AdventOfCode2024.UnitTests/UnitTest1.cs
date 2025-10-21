@@ -2,14 +2,11 @@
 
 public class Tests
 {
-    [SetUp]
-    public void Setup()
-    {
-    }
-
     [Test]
-    public void Test1()
+    [TestCase(new[]{ 3, 4, 2, 1, 3, 3}, new[]{ 4, 3, 5, 3, 9, 3}, 11)]
+    public void FindTotalDistance_ShouldFindDistance(int[] list1, int[] list2, int expected)
     {
-        Assert.Pass();
+        var result = Day1.FindTotalDistance(list1, list2);
+        Assert.That(result, Is.EqualTo(expected));
     }
 }
