@@ -2,6 +2,18 @@
 
 public class Day2
 {
+    public static List<List<int>> ParseInputFile()
+    {
+        var input = File.ReadAllText("Resources/Day2Input.txt");
+        var splitByLine = input.Split('\n');
+        
+        return splitByLine.Select(
+                    x => x.Split(' ').Select(
+                        y => int.Parse(y)
+                    ).ToList()
+                ).ToList();
+    }
+    
     /**
      * The unusual data (your puzzle input) consists of many reports, one report per line.
      * Each report is a list of numbers called levels that are separated by spaces.
