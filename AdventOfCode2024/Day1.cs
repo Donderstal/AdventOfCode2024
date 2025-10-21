@@ -31,18 +31,14 @@ public class Day1
     {
         var totalDistance = 0;
         
-        // Order both lists ascendingly
         var sortedList1 = list1.OrderBy(x => x).ToArray();
         var sortedList2 = list2.OrderBy(x => x).ToArray();
         
-        // Loop through the lists from the start
         for (int i = 0; i < sortedList1.Length; i++)
         {
             var item1 = sortedList1[i];
             var item2 = sortedList2[i];
             
-            // Compare the numbers to find the distance
-            // Add up the numbers to our return value
             totalDistance += Math.Abs(item1 - item2);
         }
         
@@ -57,22 +53,16 @@ public class Day1
     {
         var similarityMap = new Dictionary<int, int>();
         
-        // First fetch all the unique numbers in the leftList
         foreach (var leftItem in leftList)
         {
-            // Add our leftItem int as a key with value 0 if not present
             similarityMap.TryAdd(leftItem, 0);
         }
-
-        // Then, search through the rightlist
+        
         foreach (var rightItem in rightList.Where(rightItem => similarityMap.ContainsKey(rightItem)))
         {
-            // Keep track of how many times each left number appears
             similarityMap[rightItem]++;
         }
-
-        // Then, multiply each unique leftlist number by their appearances in rightlist
-        // Sum the results and return them
+        
         return leftList.Sum(item => similarityMap[item] * item);
     }
 }
