@@ -1,2 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using AdventOfCode2024;
+
+Console.WriteLine("ADVENT OF CODE 2024");
+Console.WriteLine("___________________");
+Console.WriteLine(Environment.NewLine);
+
+Console.WriteLine("DAY 1");
+var day1Input = Day1.ParseInputFile();
+Console.WriteLine($"Answer: {Day1.FindTotalDistance(day1Input.Item1, day1Input.Item2)}");
