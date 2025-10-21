@@ -21,10 +21,9 @@ public class Day2
      * The levels are either all increasing or all decreasing.
      * Any two adjacent levels differ by at least one and at most three.
      */
-    public static int CountSafeLevels(List<List<int>> input)
+    public static int CountSafeReports(List<List<int>> input)
     {
         var safeReports = 0;
-        var previousLevel = -1;
         
         // Loop through the levels in the report
         foreach (var report in input)
@@ -34,30 +33,27 @@ public class Day2
                 continue;
             
             var reportIsSafe = true;
-            var shouldIncrease = report[0] < report[1];
             
             // Determine if the first and second element have a increasing or decreasing distance
+            var shouldIncrease = report[0] < report[1];
+            var previousLevel = report[0];
             
-            foreach (var level in report)
+            foreach (var level in report.Skip(1))
             {
-                if (previousLevel != -1)
+                // Then, keep track if all next steps in the level:
+                // - Are within the 1 3 range
+                // - Are all increasing/decreasing like the first
+                if ((shouldIncrease && previousLevel >= level)
+                    || (!shouldIncrease && previousLevel <= level)
+                    || (Math.Abs(previousLevel - level) > 3))
                 {
-                    // Then, keep track if all next steps in the level:
-                    // - Are within the 1 3 range
-                    // - Are all increasing/decreasing like the first
-                    if ((shouldIncrease && previousLevel >= level)
-                        || (!shouldIncrease && previousLevel <= level)
-                        || (Math.Abs(previousLevel - level) > 3))
-                    {
-                        reportIsSafe = false;
-                        break;
-                    }
-                }    
+                    reportIsSafe = false;
+                    break;
+                }
                 
                 previousLevel = level;
             }
             
-            previousLevel = -1;
             // If the level satisfies our condition, add one to our return value
             if(reportIsSafe) safeReports++;
         }

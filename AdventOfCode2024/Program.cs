@@ -13,6 +13,6 @@ Console.WriteLine(Environment.NewLine);
 
 Console.WriteLine("DAY 2");
 var day2Input = Day2.ParseInputFile();
-Console.WriteLine($"Answer 1: {Day2.CountSafeLevels(day2Input)}");
+Console.WriteLine($"Answer 1: {Day2.CountSafeReports(day2Input)}");
 Console.WriteLine("___________________");
 Console.WriteLine(Environment.NewLine);

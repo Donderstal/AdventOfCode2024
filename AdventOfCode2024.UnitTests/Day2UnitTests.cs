@@ -15,7 +15,7 @@ public class Day2UnitTests
     [Test]
     public void CountSafeLevels_ShouldCountSafeLevels()
     {
-        var result = Day2.CountSafeLevels(_testInput);
+        var result = Day2.CountSafeReports(_testInput);
         Assert.That(result, Is.EqualTo(2));
     }
 }
