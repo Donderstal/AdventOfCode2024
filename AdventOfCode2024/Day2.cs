@@ -4,10 +4,9 @@ public class Day2
 {
     public static List<List<int>> ParseInputFile()
     {
-        var input = File.ReadAllText("Resources/Day2Input.txt");
-        var splitByLine = input.Split('\n');
+        var inputSplitByLine = InputFileHelper.GetInputFileAndSplitByLine("Day2Input.txt");
         
-        return splitByLine.Select(
+        return inputSplitByLine.Select(
                     x => x.Split(' ').Select(
                         y => int.Parse(y)
                     ).ToList()

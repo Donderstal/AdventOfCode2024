@@ -4,13 +4,12 @@ public class Day1
 {
     public static (List<int>, List<int>) ParseInputFile()
     {
-        var input = File.ReadAllText("Resources/Day1Input.txt");
-        var splitByLine = input.Split('\n');
+        var inputSplitByLine = InputFileHelper.GetInputFileAndSplitByLine("Day1Input.txt");
         
         List<int> leftList =  [];
         List<int> rightList =  [];
         
-        foreach (var line in splitByLine)
+        foreach (var line in inputSplitByLine)
         {
             var split = line.Split("   ");
             leftList.Add(int.Parse(split[0]));
