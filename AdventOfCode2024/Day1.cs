@@ -10,7 +10,7 @@ public class Day1
      * To find the total distance between the left list and the right list, add up the distances between all of the pairs you found.
      */
 
-    public static (int[], int[]) ParseInputFile()
+    public static (List<int>, List<int>) ParseInputFile()
     {
         var input = File.ReadAllText("Resources/Day1Input.txt");
         var splitByLine = input.Split('\n');
@@ -25,10 +25,10 @@ public class Day1
             rightList.Add(int.Parse(split[1]));
         }
         
-        return (leftList.ToArray(), rightList.ToArray());
+        return (leftList, rightList);
     }
 
-    public static int FindTotalDistance(int[] list1, int[] list2)
+    public static int FindTotalDistance(List<int> list1, List<int> list2)
     {
         var totalDistance = 0;
         
