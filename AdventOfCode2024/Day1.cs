@@ -12,12 +12,23 @@ public class Day1
 
     public static int FindTotalDistance(int[] list1, int[] list2)
     {
+        var totalDistance = 0;
+        
         // Order both lists ascendingly
+        var sortedList1 = list1.OrderBy(x => x).ToArray();
+        var sortedList2 = list2.OrderBy(x => x).ToArray();
         
         // Loop through the lists from the start
+        for (int i = 0; i < sortedList1.Length; i++)
+        {
+            var item1 = sortedList1[i];
+            var item2 = sortedList2[i];
+            
+            // Compare the numbers to find the distance
+            // Add up the numbers to our return value
+            totalDistance += Math.Abs(item1 - item2);
+        }
         
-        // Compare the numbers to find the distance
-        
-        // Add up the numbers to our return value
+        return totalDistance;
     }
 }
